@@ -1,0 +1,65 @@
+<%- include ('../partials/header')%>
+
+<div class="container">
+  <%if(recipt.length<1){%>
+  <h1> No recipt found</h1>
+  
+  <% }else{ %>
+  <% gd=0%>
+</div>
+<section class="container-fluid px-0">
+<img  src="https://res.cloudinary.com/djweoyvdx/image/upload/v1588074420/CamScanner_04-28-2020_13.27.16_2-1_hzuuch.jpg"class="img-fluid" alt="">
+</section>
+<div class="container">
+  <div class="row border justify-content-center text-black"style="background:#07b0f2;">
+    <div class="border" style="width:100%;padding:8px 10px;height:45px">
+    <p class="text-left" id="inline"><strong>SALESMAN'S NAME - <%=recipt[0].name.toUpperCase()%></strong></p>
+    <p class="float-right" id="inline"><strong>CASH RECEIVED IN <%=recipt[0].month%> <%=recipt[0].year%></strong></p>
+    </div>
+  </div>
+    <div class="row border">
+        
+      <div class="col-2 border">
+      <P><strong>voucher no</strong></P>
+    </div>
+    <div class="col-5 border">
+      <P><strong>Date</strong></P>
+    </div>
+    <div class="col-5 border">
+      <P><strong>Amount<br>SR</strong></P>
+    </div>
+        
+    </div>
+    <% recipt.forEach(function(recipt){ %>
+    <div class="row border">
+        
+        <div class="col-2 border">
+          <%if(currentuser && currentuser.isadmin.toString()==="true"){%>
+      <P><a href="/sales/recipt/<%=recipt._id%>/edit"><%=recipt.voucher%></a></P>
+      <% }else{ %>
+      <P><%=recipt.voucher%></P>
+      <% } %>
+    </div>
+    <div class="col-5 border">
+      <P><%=recipt.date%></P>
+    </div>
+    <div class="col-5 border">
+      <P><%=recipt.amount%></P>
+    </div> 
+    </div>
+    <%gd=gd+parseFloat(recipt.amount)%>
+    
+    <% }) %>
+    <div class="row border">
+      <div class="col-7 border">
+        <p class="text-right"><strong>Grand Total</strong></p>
+      </div>
+      <div class="col-5 border">
+        <P><strong><%=gd.toFixed(2)%> SR</strong></P>
+      </div>
+    </div>
+</div>
+ <% } %>       
+        
+        
+<%- include ('../partials/footer')%>

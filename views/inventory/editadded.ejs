@@ -1,0 +1,106 @@
+<%- include ('../partials/header')%>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <% var d=new Date()%>
+    <%let today = new Date().toLocaleDateString()%>
+    <%var month= d.toLocaleString('default', { month: 'long' })%>
+    <% var year=new Date().getFullYear()%>
+<div class="container">
+    <div class="row">
+        
+        <div style="width:50%; margin:0 auto;">
+            
+            <h2 class="text-center">Update Iventory</h2>
+            
+            <form action="/inventory/update/edit/<%=uinvt._id%>/<%=uinvt.month%>/<%=uinvt.year%>?_method=PUT" method="post">
+                
+                 
+                    <input class="form-control" type="hidden" name="sales[type]" value="ADDED" readonly>
+            
+
+           
+             <div class="form-group row">
+                    <label for="inputEmail3" class="col-sm-2 col-form-label">Date</label>
+                    <div class="col-sm-10">
+                    <input class="form-control" type="text" name="sales[date]" value="<%=uinvt.date%>" required>
+                    </div>
+            </div>
+              
+                 
+             <div class="form-group row">
+                 <label for="inputEmail3" class="col-sm-2 col-form-label">200ML</label>
+                    <div class="col-sm-10">
+             <input class="form-control" type="text" name="sales[peice200ml]" value="<%=uinvt.peice200ml%>" required>
+             </div>
+             </div>
+            <input class="form-control" type="hidden" name="sales[oldpeice200ml]" value="<%=uinvt.peice200ml%>" readonly>
+             <div class="form-group row">
+                 <label for="inputEmail3" class="col-sm-2 col-form-label">330ML</label>
+                    <div class="col-sm-10">
+             <input class="form-control" type="text" name="sales[peice330ml]" value="<%=uinvt.peice330ml%>" required>
+             </div>
+             </div>
+              <input class="form-control" type="hidden" name="sales[oldpeice330ml]" value="<%=uinvt.peice330ml%>" readonly>             
+             <div class="form-group row">
+                 <label for="inputEmail3" class="col-sm-2 col-form-label">600ML</label>
+                    <div class="col-sm-10">
+             <input class="form-control" type="text" name="sales[peice600ml]" value="<%=uinvt.peice600ml%>" required>
+             </div>
+             </div>
+               <input class="form-control" type="hidden" name="sales[oldpeice600ml]" value="<%=uinvt.peice600ml%>" readonly>            
+             <div class="form-group row">
+                 <label for="inputEmail3" class="col-sm-2 col-form-label">1.5L</label>
+                    <div class="col-sm-10">
+             <input class="form-control" type="text" name="sales[peice1500ml]" value="<%=uinvt.peice1500ml%>" required>
+             </div>
+             </div>
+             <input class="form-control" type="hidden" name="sales[oldpeice1500ml]" value="<%=uinvt.peice1500ml%>" readonly>             
+             <div class="form-group row">
+                 <label for="inputEmail3" class="col-sm-2 col-form-label">5l</label>
+                    <div class="col-sm-10">
+             <input class="form-control" type="text" name="sales[peice5000ml]" value="<%=uinvt.peice5000ml%>" required>
+             </div>
+             </div>
+             <input class="form-control" type="hidden" name="sales[oldpeice5000ml]" value="<%=uinvt.peice5000ml%>" readonly>
+                         <div class="form-group row">
+                   <label for="inputEmail3" class="col-sm-2 col-form-label">Month</label>
+                    <div class="col-sm-10">
+                    <select id="inputState" class="form-control" name="sales[month]">
+                    <option selected><%=uinvt.month%></option>
+                    <option>JANUARY</option>
+                    <option>FEBRUARY</option>
+                    <option>MARCH</option>
+                    <option>APRIL</option>
+                    <option>MAY</option>
+                    <option>JUNE</option>
+                    <option>JULY</option>
+                    <option>AUGUST</option>
+                    <option>SEPTEMBER</option>
+                    <option>OCTOBER</option>
+                    <option>NOVEMBER</option>
+                    <option>DECEMBER</option> 
+                    </select>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="inputEmail3" class="col-sm-2 col-form-label">Year</label>
+                    <div class="col-sm-10">
+                    <select id="inputState" class="form-control" name="sales[year]">
+                    <option selected><%=uinvt.year%></option>
+                    <option>2020</option>
+                    <option>2021</option>
+                    </select>
+                    </div>
+                </div>
+                           
+             
+             
+             <div class="form-group">
+            <button class="btn btn-lg btn-primary btn-block">Submit</button>
+            </div>
+            <p><a href="/home">Go Back</a></p>
+        </form>
+</div>
+</div>
+</div>
+    
+<%- include ('../partials/footer')%>

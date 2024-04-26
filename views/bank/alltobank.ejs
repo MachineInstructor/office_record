@@ -1,0 +1,60 @@
+<%- include ('../partials/header')%>
+
+<div class="container">
+  <%if(bank.length<1){%>
+  <h1> No record found</h1>
+  
+  <% }else{ %>
+  <%var gd=0%>
+</div>
+<section class="container-fluid px-0">
+<img  src="https://res.cloudinary.com/djweoyvdx/image/upload/v1588074420/CamScanner_04-28-2020_13.27.16_2-1_hzuuch.jpg"class="img-fluid" alt="">
+</section>
+<div class="container">
+  <div class="row border justify-content-center text-black"style="background:#07b0f2;">
+    <p style="margin:8px;"><strong>MONEY DEPOSITED TO BANK <%=bank[0].month%> <%=bank[0].year%></strong></p>
+  </div>
+      <div class="row border">
+    <div class="col-2 border">
+      <P><strong>Date</strong></P>
+    </div>
+    <div class="col-8 border">
+      <P><strong>Description</strong></P>
+    </div>
+    <div class="col-2 border">
+      <P><strong>Amount<br>SR</strong></P>
+    </div>
+        
+    </div>
+    <% bank.forEach(function(bank){ %>
+    <div class="row border">
+    <div class="col-2 border">
+      <%if(currentuser && currentuser.isadmin.toString()==="true"){%>
+      <P><a href="/expenses/edittobank/<%=bank._id%>/edit"><%=bank.date%></a></P>
+      <% }else{ %>
+      <P><%=bank.date%></P>
+      <% } %>
+    </div>
+     <div class="col-8 border">
+      <P><%=bank.desc%></P>
+    </div>
+    <div class="col-2 border">
+      <P><%=bank.amount%></P>
+    </div>
+    </div>
+    <%gd=gd+parseFloat(bank.amount)%>
+    
+    <% }) %>
+    <div class="row border">
+      <div class="col-10 border">
+        <p class="text-right"><strong>Grand Total</strong></p>
+      </div>
+      <div class="col-2 border">
+        <P><strong><%=gd.toFixed(2)%> SR</strong></P>
+      </div>
+    </div>
+</div>
+        
+<% } %>        
+        
+<%- include ('../partials/footer')%>

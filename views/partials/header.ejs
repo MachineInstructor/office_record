@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        
+    
+      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+ 
+       <link rel="stylesheet" href="/stylesheets/main.css">
+       <!--<link rel="stylesheet" href="/stylesheets/landing.css">-->
+       <title>abar hail</title>
+    </head>
+    <body>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container-fluid">
+        <div class='navbar-header'>
+            <a class="navbar-brand"href="/">Fahad Al-Jeneede Est</a>
+        </div>
+        <div class="justify-content-end" id="navbarSupportedContent">
+            <ul class="navbar-nav">
+                
+                
+                                <div class="form-inline">
+           
+                    <% if(!currentuser){%>
+                    <li class="nav-item">
+                 <a class="nav-link text-warning" href="/login">Login</a>
+            </li>
+            <% }else{%>
+            
+            <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle text-warning" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"style="margin-right:10px;">
+         <%=currentuser.firstname%>
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                   <%if(currentuser && currentuser.isadmin.toString()==="true"){%>
+        <a class="dropdown-item" href="/addemployee">Add employee</a>
+        <a class="dropdown-item" href="/register">Add User</a>
+        <a class="dropdown-item" href="/adminregister">Add admin</a>
+        <% } %>
+        <a class="dropdown-item" href="/logout">Logout</a>
+        </div>
+      </li>
+     
+            
+            <% }%>
+            </div>
+
+            </div>
+            </div>
+            </nav>
+            <!--<div class="container">-->
+    <%if(error && error.length>0){%>
+    <div class="alert alert-danger"id="margin" role="alert">
+  <%=error%>
+</div>
+<%}%>
+<%if(success && success.length>0){%>
+<div class="alert alert-success"id="margin" role="alert">
+  <%=success%>
+</div>
+<%}%>
+<!--</div>-->
+            

@@ -1,0 +1,110 @@
+<%- include ('../partials/header')%>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+<% var d=new Date();var month1;%>
+    <%let today = new Date().toLocaleDateString()%>
+    <%var month= d.toLocaleString('default', { month: 'long' })%>
+    <% var year=new Date().getFullYear()%>
+<%var months=[{month:"JANUARY"},{month:"FEBRUARY"},{month:"MARCH"},{month:"APRIL"},{month:"MAY"},{month:"JUNE"},{month:"JULY"},{month:"AUGUST"},{month:"SEPTEMBER"},{month:"OCTOBER"},{month:"NOVEMBER"},{month:"DECEMBER"}]%>
+<%for( var i=0;i<months.length;i++){ %>
+      <% if(months[i].month===slip[0].month){ %>
+          <% month1=months[i-1].month;%>
+       <% } %>
+      
+ <%  } %>   
+<% var tot=0;var com=0;%>
+<div class="container">
+  <%if(slip.length<1){%>
+  <h1> No record found</h1>
+  
+  <% }else{ %>
+</div>
+<section class="container-fluid px-0">
+<img  src="https://res.cloudinary.com/djweoyvdx/image/upload/v1588074420/CamScanner_04-28-2020_13.27.16_2-1_hzuuch.jpg"class="img-fluid" alt="">
+</section>
+<div class="container">
+  <div class="row border justify-content-center text-black"style="background:#07b0f2;">
+    <div class="col-6 border">
+        <p style="margin:8px;"><strong>SALARY OF-<%=month1%> <%=slip[0].year%></strong></p>
+    </div>
+    <div class="col-6 border">
+        <p style="margin:8px;"><strong>DATE-<%=today%> </strong></p>
+    </div>
+  </div>
+
+    <% slip.forEach(function(salary){ %>
+    <%if(salary.type==="Salary"){ %>
+    <div class="row border">
+         <div class="col-6 border">
+      <P><strong>Name</strong></P>
+    </div>
+        <div class="col-6 border">
+      <P><%=salary.name%></P>
+    </div>
+    </div>
+    
+<div class="row border">
+    <div class="col-6 border">
+      <P><strong>Designation</strong></P>
+    </div>
+     <div class="col-6 border">
+      <P><%=salary.designation%></P>
+    </div>
+    </div>
+    
+    <div class="row border">
+        <div class="col-6 border">
+      <P><strong>Basic salary</strong></P>
+    </div>
+    <div class="col-6 border">
+      <P><%=salary.bsalary%></P>
+    </div>
+    </div>
+    <div class="row border">
+        <div class="col-6 border">
+      <P><strong>Food allownce</strong></P>
+    </div>
+    <div class="col-6 border">
+      <P><%=salary.food%></P>
+    </div>
+    </div>
+<% tot=salary.amount;%>
+    <% } %>
+    <% }) %>
+    
+     <% slip.forEach(function(salary1){ %>
+     <%if (salary1.type==="Commision"){%>
+     
+     <div class="row border">
+        <div class="col-6 border">
+      <P><strong>commision</strong></P>
+    </div>
+    <div class="col-6 border">
+      <P><%=salary1.amount%></P>
+    </div>
+    </div>
+    <% com=salary1.amount;%>
+     <% } %>
+ <% }) %>
+ 
+  <div class="row border">
+        <div class="col-6 border">
+      <P><strong>Total salary</strong></P>
+    </div>
+    <div class="col-6 border">
+      <P><%=(parseFloat(tot)+parseFloat(com))%></P>
+    </div>
+    </div>
+ 
+ <div class="row"style="padding:80px 0;">
+     <div class="col-6">
+         <P style="text-decoration:underline"><strong>Accountant Signature</strong></P>
+     </div>
+     <div class="col-6">
+         <P class="text-right"style="text-decoration:underline"><strong>Employee Signature</strong></P>
+     </div>
+ </div>
+</div>
+        
+<% } %>        
+        
+<%- include ('../partials/footer')%>

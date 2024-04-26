@@ -1,0 +1,159 @@
+<%- include ('../partials/header')%>
+
+<div class="container">
+  <%if(salary.length<1){%>
+  <h1> To View All Expenses First Give Salary</h1>
+  
+  <% }else{ %>
+
+</div>
+<section class="container-fluid px-0">
+<img  src="https://res.cloudinary.com/djweoyvdx/image/upload/v1588074420/CamScanner_04-28-2020_13.27.16_2-1_hzuuch.jpg"class="img-fluid" alt="">
+</section>
+  <%var st=0;var ct=0;var gt=0; var trt=0; var et=0;var rt=0;var bt=0;var fe=0;%>
+
+<% salary.forEach(function(salary){ %>
+    <%st=st+parseFloat(salary.amount)%>
+    <% }) %>
+    
+    <% govt.forEach(function(govt){ %>
+    <%gt=gt+parseFloat(govt.amount)%>
+    <% }) %>
+    
+    <% car.forEach(function(car){ %>
+    <%ct=ct+parseFloat(car.amount)%>
+    <% }) %>
+    
+    <% rent.forEach(function(rent){ %>
+    <%trt=trt+parseFloat(rent.amount)%>
+    <% }) %>
+    
+    <% extra.forEach(function(extra){ %>
+    <%et=et+parseFloat(extra.amount)%>
+    <% }) %>
+
+
+
+
+<div class="container">
+  <div class="row border justify-content-center text-black"style="background:#07b0f2;">
+    <p style="margin:8px;"><strong>ALL EXPENSES-1 OF-<%=salary[0].month%></strong></p>
+  </div>
+      <div class="row border">
+    
+    <div class="col-9 border">
+      <P class="text-center"><strong>Description</strong></P>
+    </div>
+    <div class="col-3 border">
+      <P><strong>Amount<br>SR</strong></P>
+    </div>
+        
+    </div>
+    
+    
+     <div class="row border">
+     <div class="col-9 border">
+      <P>Total Expenses on salary</P>
+    </div>
+    <div class="col-3 border">
+      <P><%=st%></P>
+    </div>
+    </div>
+    
+         <div class="row border">
+     <div class="col-9 border">
+      <P>Total Expenses on car deisel and maintainance</P>
+    </div>
+    <div class="col-3 border">
+      <P><%=ct%></P>
+    </div>
+    </div>
+    
+    
+             <div class="row border">
+     <div class="col-9 border">
+      <P>Total Expenses on government fees</P>
+    </div>
+    <div class="col-3 border">
+      <P><%=gt%></P>
+    </div>
+    </div>
+    
+                 <div class="row border">
+     <div class="col-9 border">
+      <P>Total Expenses on trailor rent</P>
+    </div>
+    <div class="col-3 border">
+      <P><%=trt%></P>
+    </div>
+    </div>
+    
+                 <div class="row border">
+     <div class="col-9 border">
+      <P>Total office miscellaneous expenses</P>
+    </div>
+    <div class="col-3 border">
+      <P><%=et%></P>
+    </div>
+    </div>
+    
+    
+    
+    <div class="row border">
+      <div class="col-9 border">
+        <p class="text-right"><strong>Grand Total</strong></p>
+      </div>
+      <div class="col-3 border">
+        <P><strong><%=st+ct+gt+trt+et%> SR</strong></P>
+      </div>
+    </div>
+</div>
+
+<div class="container">
+  <div class="row border justify-content-center text-black"style="background:#07b0f2;">
+    <p style="margin:8px;"><strong>ALL EXPENSES-2 OF <%=fexpenses[0].month%></strong></p>
+  </div>
+  
+  <div class="row border">
+    
+    <div class="col-9 border">
+      <P class="text-center"><strong>Description</strong></P>
+    </div>
+    <div class="col-3 border">
+      <P><strong>Amount<br>SR</strong></P>
+    </div>
+        
+    </div>
+  
+  
+  <% fexpenses.forEach(function(fexpenses){%>
+    
+   <div class="row border">
+     <div class="col-9 border">
+       <% if(fexpenses.name==="VAT 5%"){%>
+        <P><%=fexpenses.name%> for the month of <%=fexpenses.month%></P>
+       <% }else{ %>
+      <P><%=fexpenses.name%></P>
+      <% } %>
+    </div>
+    <div class="col-3 border">
+      <P><%=fexpenses.amount%></P>
+    </div>
+    </div>
+      <%fe = (fe + parseFloat(fexpenses.amount))%>
+    <% }) %>
+
+    <div class="row border">
+      <div class="col-9 border">
+        <p class="text-right"><strong>Grand Total</strong></p>
+      </div>
+      <div class="col-3 border">
+        <P><strong><%=fe.toFixed(2)%> SR</strong></P>
+      </div>
+    </div>
+</div>
+
+        
+<% } %>        
+        
+<%- include ('../partials/footer')%>
